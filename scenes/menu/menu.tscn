@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxap6kr6pr5px"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_5bcen"]
+[ext_resource type="Theme" uid="uid://drehwkdgm6vle" path="res://assets/themes/button_menu.tres" id="2_e4nba"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5bcen")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.0901961, 0.231373, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -31.5
+offset_right = 23.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="PlayBtn" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitBtn")
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_e4nba")
+theme_type_variation = &"FlatButton"
+text = "Play"
+
+[node name="OptionsBtn" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_e4nba")
+theme_type_variation = &"FlatButton"
+text = "Options"
+
+[node name="QuitBtn" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../PlayBtn")
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_e4nba")
+theme_type_variation = &"FlatButton"
+text = "Quit"
+
+[connection signal="mouse_entered" from="Panel/VBoxContainer/PlayBtn" to="." method="_on_play_btn_mouse_entered"]
+[connection signal="pressed" from="Panel/VBoxContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/OptionsBtn" to="." method="_on_options_btn_mouse_entered"]
+[connection signal="pressed" from="Panel/VBoxContainer/OptionsBtn" to="." method="_on_options_btn_pressed"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/QuitBtn" to="." method="_on_quit_btn_mouse_entered"]
+[connection signal="pressed" from="Panel/VBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
