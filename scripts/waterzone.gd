@@ -1,5 +1,7 @@
 extends Area2D
 
+signal entered_water
+signal exited_water
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,6 +14,8 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print('in the water')
-	Engine.time_scale = 0.2
-	pass # Replace with function body.
+	emit_signal('entered_water')
+
+
+func _on_body_exited(body: Node2D) -> void:
+	emit_signal('exited_water')
